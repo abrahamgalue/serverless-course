@@ -1,9 +1,16 @@
 const express = require('express')
+const mongoose = require('mongoose')
 const app = express()
 
+mongoose.connect(process.env.MONGODB_URI)
+
+const Users = mongoose.model('User', new mongoose.Schema({ name: String }))
+
+Users.create({ name: 'chanchito triste' })
+
 app.get('*', (req, res) => {
-  console.log('Mi primera aplicacion serverless')
-  res.json({ mensaje: 'Chanchito feliz!!' })
+  Users.find()
+    .then(x => res.send(x))
 })
 
 module.exports = app
