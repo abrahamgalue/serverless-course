@@ -4,13 +4,8 @@ const app = express()
 
 mongoose.connect(process.env.MONGODB_URI)
 
-const Users = mongoose.model('User', new mongoose.Schema({ name: String }))
-
-Users.create({ name: 'chanchito triste' })
-
 app.get('*', (req, res) => {
-  Users.find()
-    .then(x => res.send(x))
+  res.send('Hola Mundo')
 })
 
 module.exports = app
