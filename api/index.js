@@ -1,11 +1,13 @@
 const express = require('express')
 const { json } = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 const meals = require('./routes/meals')
 const orders = require('./routes/orders')
 
 const app = express()
 app.use(json())
+app.use(cors())
 
 mongoose.connect(process.env.MONGODB_URI)
 
