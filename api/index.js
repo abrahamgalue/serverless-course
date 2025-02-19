@@ -1,11 +1,12 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const plates = require('./routes/plates')
+const orders = require('./routes/orders')
 const app = express()
 
 mongoose.connect(process.env.MONGODB_URI)
 
-app.get('*', (req, res) => {
-  res.send('Hola Mundo')
-})
+app.use('/plates', plates)
+app.use('/orders', orders)
 
 module.exports = app
