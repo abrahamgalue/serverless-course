@@ -1,25 +1,32 @@
 const { Router } = require('express')
+const Orders = require('../models/Orders')
 
 const router = Router()
 
 router.get('/', (req, res) => {
-  res.send('Hola soy orders')
+  Orders.find()
+    .exec()
+    .then(x => res.status(200).send(x))
 })
 
 router.get('/:id', (req, res) => {
-  res.send(req.params.id)
+  Orders.findById(req.params.id)
+    .exec()
+    .then(x => res.status(200).send(x))
 })
 
 router.post('/', (req, res) => {
-  res.send('soy post')
+  Orders.create(req.body)
+    .then(x => res.status(201).send(x))
 })
 
 router.put('/:id', (req, res) => {
-  res.send('soy put')
+  Orders.findByIdAndUpdate(req.body.id, req.body)
+    .then(x => res.status(204).send(x))
 })
 
 router.delete('/:id', (req, res) => {
-  res.send('soy delete')
+  Orders.findOneAndDelete(req.params.id).exec().then(() => res.sendStatus(204))
 })
 
 module.exports = router
