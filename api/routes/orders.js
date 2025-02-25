@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const Orders = require('../models/Orders')
-const isAuthenticated = require('../auth')
+const { isAuthenticated, hasRole } = require('../auth')
 
 const router = Router()
 
