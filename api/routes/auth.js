@@ -7,7 +7,7 @@ const { isAuthenticated } = require('../auth')
 const router = Router()
 
 const signToken = (_id) => {
-  return jwt.sign(_id, 'mi-secreto', {
+  return jwt.sign({ _id }, 'mi-secreto', {
     expiresIn: 60 * 60 * 24 * 365,
   })
 }
@@ -43,7 +43,7 @@ router.post('/login', (req, res) => {
         return res.send('usuario y/o contraseña incorrecta')
       }
       crypto.pbkdf2(password, user.salt, 10000, 64, 'sha1', (err, key) => {
-        const encryptedPassword = key.toString()
+        const encryptedPassword = key.toString('base64')
         if (user.password === encryptedPassword) {
           const token = signToken(user._id)
           return res.send({ token })
