@@ -10,7 +10,11 @@ const isAuthenticated = (req, res, next) => {
     const { _id } = decoded
     Users.findOne({ _id }).exec()
       .then(user => {
-        req.user = user
+        req.user = {
+          "_id": user._id,
+          "email": user.email,
+          "role": user.role
+        }
         next()
       })
   })
