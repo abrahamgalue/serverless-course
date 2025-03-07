@@ -53,6 +53,13 @@ router.post('/login', (req, res) => {
     })
 })
 
+router.get('/user/:id', isAuthenticated, (req, res) => {
+  Users.findById(req.params.id)
+    .exec()
+    .then(user => res.status(200).send(user))
+    .catch(() => res.status(404).send('Usuario no encontrado'))
+})
+
 router.get('/me', isAuthenticated, (req, res) => {
   res.send(req.user)
 })
