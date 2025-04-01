@@ -12,6 +12,10 @@
 
 ![vista-previa](public/preview/02-page-preview.png)
 
+![vista-previa](public/preview/03-page-preview.png)
+
+![vista-previa](public/preview/04-page-preview.png)
+
 ## 🚀 Descripción
 
 Este proyecto de curso utiliza MongoDB para la gestión de datos, respondiendo a consultas de una aplicación frontend.
